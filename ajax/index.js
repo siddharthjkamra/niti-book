@@ -31,11 +31,11 @@ function loadChapter(chapterNum) {
       chapterTitle.textContent = data.title;
       verseList.innerHTML = ''; // Clear previous verses
 
-      data.verses.forEach(verse => {
+      data.verses.forEach((verse, index) => {
         const verseItem = document.createElement('div');
         verseItem.className = 'verse-item';
         verseItem.textContent = verse;
-        verseItem.onclick = () => copyVerse(verse);
+        verseItem.onclick = () => copyVerse(verse, chapterNum, index + 1);
         verseList.appendChild(verseItem);
       });
 
@@ -46,9 +46,10 @@ function loadChapter(chapterNum) {
     .catch(error => console.error('Error loading chapter:', error));
 }
 
-// Copy verse to clipboard and show toast
-function copyVerse(verse) {
-  navigator.clipboard.writeText(verse).then(() => showToast("Verse copied!"));
+// Copy verse to clipboard with fixed prefix and dynamic chapter/verse info
+function copyVerse(verse, chapterNum, verseIndex) {
+  const formattedText = `~ Chanakya Niti ${chapterNum}:${verseIndex}\n${verse}`;
+  navigator.clipboard.writeText(formattedText).then(() => showToast("Verse copied!"));
 }
 
 // Show a custom toast message

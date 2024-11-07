@@ -67,7 +67,14 @@ function displayChapter({ title, verses }) {
 
 // Copy verse to clipboard with a fixed prefix and dynamic chapter/verse info
 function copyVerse(verse, chapterTitle, verseIndex) {
-  navigator.clipboard.writeText(`~ ${chapterTitle} ${verseIndex}\n${verse}`).then(() => showToast("Verse copied!"));
+  // Extract the chapter number from the title (assuming it's in the format 'Chanakya Niti X')
+  const chapterNumber = chapterTitle.split(' ').pop(); // Gets the last part, e.g., '1' from 'Chanakya Niti 1'
+
+  // Format the text with the required prefix and verse
+  const textToCopy = `~ Chanakya Niti ${chapterNumber}:${verseIndex}\n${verse}`;
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(textToCopy).then(() => showToast("Verse copied!"));
 }
 
 // Show custom toast message

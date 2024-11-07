@@ -1,6 +1,14 @@
+@font-face {
+  font-family: 'Noto Serif Devanagari';
+  src: url('NotoSerifDevanagari-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-stretch: 75% 100%;
+}
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
+    font-family: 'Noto Serif Devanagari', serif;
+    padding: 8px;
+    font-weight: 400;
+    font-stretch: 100%;
 }
 
 h1 {

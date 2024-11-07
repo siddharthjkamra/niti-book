@@ -1,5 +1,13 @@
+@font-face {
+  font-family: 'HubotSans';
+  src: url('/assets/HubotSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900; /* Range of font weights available in the variable font */
+  font-stretch: 50% 200%; /* Range of font widths (optional, adjust as needed) */
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'HubotSans', sans-serif;
+    font-weight: 400;
     padding: 20px;
 }
 
@@ -33,6 +41,7 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 4px;
+    font-family: 'HubotSans', sans-serif;
 }
 
 #toast {

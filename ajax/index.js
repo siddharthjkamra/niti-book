@@ -62,7 +62,10 @@ function displayChapter({ title, verses }) {
   // Show chapter content and hide chapter list
   chapterContentSection.style.display = 'block';
   chapterListSection.style.display = 'none';
+
+  // Scroll to the top of the chapter content section
   chapterContentSection.scrollTop = 0;
+  window.scrollTo(0, 0);  // Scroll the page to the top
 }
 
 // Copy verse to clipboard with a fixed prefix and dynamic chapter/verse info

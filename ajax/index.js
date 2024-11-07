@@ -40,8 +40,11 @@ function loadChapter(chapterNum) {
       });
 
       // Show chapter content section and hide chapter list
-      chapterListSection.style.display = 'none';
       chapterContentSection.style.display = 'block';
+      chapterListSection.style.display = 'none';
+
+      // Reset scroll position to the top of the chapter content section
+      chapterContentSection.scrollTop = 0;
     })
     .catch(error => console.error('Error loading chapter:', error));
 }
@@ -67,10 +70,13 @@ function goBack() {
   showChapterList();
 }
 
-// Display the chapter list
+// Display the chapter list without affecting the scroll
 function showChapterList() {
   chapterListSection.style.display = 'block';
   chapterContentSection.style.display = 'none';
+
+  // Reset the scroll position to ensure chapter list is scrolled to the top when switching back
+  window.scrollTo(0, 0);
 }
 
 // Handle browser back and forward navigation

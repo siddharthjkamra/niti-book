@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book - Chapters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Book</h1>
+    
+    <!-- Chapter List Section -->
+    <div id="chapter-list-section">
+        <h2>Chapters</h2>
+        <div id="chapter-list"></div>
+    </div>
+
+    <!-- Chapter Content Section (initially hidden) -->
+    <div id="chapter-content-section" style="display: none;">
+        <button onclick="goBack()">Back to Chapters</button>
+        <h2 id="chapter-title"></h2>
+        <div id="verse-list"></div>
+        <div id="toast">Verse copied!</div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

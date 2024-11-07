@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#chapter-list, #verse-list {
+    max-width: 600px;
+    margin: 0 auto;
+    list-style-type: none;
+    padding: 0;
+}
+
+.chapter-item, .verse-item {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.chapter-item:hover, .verse-item:hover {
+    background-color: #f0f0f0;
+}
+
+#toast {
+    visibility: hidden;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+#toast.show {
+    visibility: visible;
+    opacity: 1;
+}

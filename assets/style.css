@@ -18,8 +18,21 @@ body {
     font-stretch: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: #007aff;
+}
+
 h1, h2 {
     text-align: center;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.center {
+  text-align: center;
 }
 
 #chapter-list, #verse-list {

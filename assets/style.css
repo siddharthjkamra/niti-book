@@ -18,7 +18,7 @@ body {
     font-stretch: 100%;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
 }
 
@@ -56,4 +56,12 @@ h1 {
 #toast.show {
     visibility: visible;
     opacity: 1;
+}
+#loading-indicator {
+  text-align: center;
+  font-size: 18px;
+  display: none; /* Hidden initially */
+}
+#loading-indicator.show {
+  display: block;
 }

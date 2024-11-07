@@ -4,8 +4,13 @@ const chapterContentSection = document.getElementById('chapter-content-section')
 const chapterList = document.getElementById('chapter-list');
 const chapterTitle = document.getElementById('chapter-title');
 const verseList = document.getElementById('verse-list');
+const toast = document.getElementById('toast');
 
-// Load chapters and display in chapter list section
+// Cache chapters to avoid repeated fetches
+let cachedChapters = {};
+let cachedVerses = {};
+
+// Load chapters and display
 fetch('/data/list-chapters.json')
   .then(response => response.json())
   .then(data => {
@@ -17,90 +22,79 @@ fetch('/data/list-chapters.json')
       chapterList.appendChild(chapterItem);
     });
   })
-  .catch(error => console.error('Error loading chapters:', error));
+  .catch(console.error);
 
-// Load a chapter without page refresh
+// Load chapter content from cache or fetch if not available
 function loadChapter(chapterNum) {
   // Update URL and add to history
   history.pushState({ chapter: chapterNum }, '', `/ajax/?ch=${chapterNum}`);
 
-  // Fetch and display chapter content
-  fetch(`/data/ch${chapterNum}.json`)
-    .then(response => response.json())
-    .then(data => {
-      chapterTitle.textContent = data.title;
-      verseList.innerHTML = ''; // Clear previous verses
-
-      data.verses.forEach((verse, index) => {
-        const verseItem = document.createElement('div');
-        verseItem.className = 'verse-item';
-        verseItem.textContent = verse;
-        verseItem.onclick = () => copyVerse(verse, chapterNum, index + 1);
-        verseList.appendChild(verseItem);
-      });
-
-      // Show chapter content section and hide chapter list
-      chapterContentSection.style.display = 'block';
-      chapterListSection.style.display = 'none';
-
-      // Reset scroll position to the top of the chapter content section
-      chapterContentSection.scrollTop = 0;
-    })
-    .catch(error => console.error('Error loading chapter:', error));
+  // If chapter is cached, use it, otherwise fetch
+  if (cachedVerses[chapterNum]) {
+    displayChapter(cachedVerses[chapterNum]);
+  } else {
+    fetch(`/data/ch${chapterNum}.json`)
+      .then(response => response.json())
+      .then(({ title, verses }) => {
+        cachedVerses[chapterNum] = { title, verses }; // Cache the chapter content
+        displayChapter({ title, verses });
+      })
+      .catch(console.error);
+  }
 }
 
-// Copy verse to clipboard with fixed prefix and dynamic chapter/verse info
-function copyVerse(verse, chapterNum, verseIndex) {
-  const formattedText = `~ Chanakya Niti ${chapterNum}:${verseIndex}\n${verse}`;
-  navigator.clipboard.writeText(formattedText).then(() => showToast("Verse copied!"));
+// Display the chapter content
+function displayChapter({ title, verses }) {
+  chapterTitle.textContent = title;
+  verseList.innerHTML = ''; // Clear previous verses
+
+  // Batch DOM update by creating all verse items first
+  const fragment = document.createDocumentFragment();
+  verses.forEach((verse, index) => {
+    const verseItem = document.createElement('div');
+    verseItem.className = 'verse-item';
+    verseItem.textContent = verse;
+    verseItem.onclick = () => copyVerse(verse, title, index + 1);
+    fragment.appendChild(verseItem);
+  });
+  verseList.appendChild(fragment);
+
+  // Show chapter content and hide chapter list
+  chapterContentSection.style.display = 'block';
+  chapterListSection.style.display = 'none';
+  chapterContentSection.scrollTop = 0;
 }
 
-// Show a custom toast message
+// Copy verse to clipboard with a fixed prefix and dynamic chapter/verse info
+function copyVerse(verse, chapterTitle, verseIndex) {
+  navigator.clipboard.writeText(`~ ${chapterTitle} ${verseIndex}\n${verse}`).then(() => showToast("Verse copied!"));
+}
+
+// Show custom toast message
 function showToast(message) {
-  const toast = document.getElementById('toast');
   toast.textContent = message;
   toast.className = 'show';
-  setTimeout(() => toast.className = toast.className.replace('show', ''), 2000);
+  setTimeout(() => toast.classList.remove('show'), 2000);
 }
 
 // Go back to chapter list without adding to history
 function goBack() {
-  // Replace the current history entry to ensure the path stays within /ajax
   history.replaceState({}, '', '/ajax/');
   showChapterList();
 }
 
-// Display the chapter list without affecting the scroll
+// Display the chapter list
 function showChapterList() {
   chapterListSection.style.display = 'block';
   chapterContentSection.style.display = 'none';
-
-  // Reset the scroll position to ensure chapter list is scrolled to the top when switching back
   window.scrollTo(0, 0);
 }
 
-// Handle browser back and forward navigation
-window.onpopstate = (event) => {
-  if (event.state && event.state.chapter) {
-    // If a chapter is in the history state, load it
-    loadChapter(event.state.chapter);
-  } else {
-    // Otherwise, go back to the chapter list without changing the folder path
-    history.replaceState({}, '', '/ajax/'); // Keep the /ajax/ path
-    showChapterList();
-  }
-};
+// Handle browser back/forward navigation
+window.onpopstate = event => event.state?.chapter ? loadChapter(event.state.chapter) : (history.replaceState({}, '', '/ajax/'), showChapterList());
 
-// Check the URL query string for chapter parameter
+// Check URL query string
 window.onload = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const chapterNum = urlParams.get('ch');
-  
-  // If chapter number exists in URL, load the corresponding chapter
-  if (chapterNum) {
-    loadChapter(chapterNum);
-  } else {
-    // Otherwise, show the chapter list
-    showChapterList();
-  }
+  const chapterNum = new URLSearchParams(window.location.search).get('ch');
+  chapterNum ? loadChapter(chapterNum) : showChapterList();
 };

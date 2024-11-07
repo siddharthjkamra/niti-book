@@ -4,8 +4,15 @@
   font-weight: 100 900;
   font-stretch: 75% 100%;
 }
+@font-face {
+  font-family: 'HubotSans';
+  src: url('HubotSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-stretch: 50% 200%;
+}
 body {
-    font-family: 'Noto Serif Devanagari', serif;
+    /* font-family: 'Noto Serif Devanagari', serif; */
+    font-family: 'HubotSans', sans-serif;
     padding: 8px;
     font-weight: 400;
     font-stretch: 100%;

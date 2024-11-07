@@ -35,6 +35,10 @@ h1, h2 {
   text-align: center;
 }
 
+.right {
+  text-align: right;
+}
+
 #chapter-list, #verse-list {
     max-width: 600px;
     margin: 0 auto;

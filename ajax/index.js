@@ -22,7 +22,7 @@ fetch('/data/list-chapters.json')
 // Load a chapter without page refresh
 function loadChapter(chapterNum) {
   // Update URL and add to history
-  history.pushState({ chapter: chapterNum }, '', `?ch=${chapterNum}`);
+  history.pushState({ chapter: chapterNum }, '', `/ajax/?ch=${chapterNum}`);
 
   // Fetch and display chapter content
   fetch(`/data/ch${chapterNum}.json`)
@@ -65,8 +65,8 @@ function showToast(message) {
 
 // Go back to chapter list without adding to history
 function goBack() {
-  // Replace the current history entry to show the chapter list view
-  history.replaceState({}, '', '/');
+  // Replace the current history entry to ensure the path stays within /ajax
+  history.replaceState({}, '', '/ajax/');
   showChapterList();
 }
 
@@ -85,7 +85,22 @@ window.onpopstate = (event) => {
     // If a chapter is in the history state, load it
     loadChapter(event.state.chapter);
   } else {
-    // Otherwise, go back to the chapter list
+    // Otherwise, go back to the chapter list without changing the folder path
+    history.replaceState({}, '', '/ajax/'); // Keep the /ajax/ path
+    showChapterList();
+  }
+};
+
+// Check the URL query string for chapter parameter
+window.onload = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const chapterNum = urlParams.get('ch');
+  
+  // If chapter number exists in URL, load the corresponding chapter
+  if (chapterNum) {
+    loadChapter(chapterNum);
+  } else {
+    // Otherwise, show the chapter list
     showChapterList();
   }
 };

@@ -48,6 +48,9 @@ function displayChapter({ title, verses }) {
   chapterTitle.textContent = title;
   verseList.innerHTML = ''; // Clear previous verses
 
+  // Set the document title dynamically based on the chapter
+  document.title = title;
+
   // Batch DOM update by creating all verse items first
   const fragment = document.createDocumentFragment();
   verses.forEach((verse, index) => {
@@ -70,10 +73,8 @@ function displayChapter({ title, verses }) {
 
 // Copy verse to clipboard with a fixed prefix and dynamic chapter/verse info
 function copyVerse(verse, chapterTitle, verseIndex) {
-  // Extract the chapter number from the title (assuming it's in the format 'Chanakya Niti X')
   const chapterNumber = chapterTitle.split(' ').pop(); // Gets the last part, e.g., '1' from 'Chanakya Niti 1'
 
-  // Format the text with the required prefix and verse
   const textToCopy = `~ Chanakya Niti ${chapterNumber}:${verseIndex}\n${verse}`;
 
   // Copy to clipboard
@@ -97,6 +98,7 @@ function goBack() {
 function showChapterList() {
   chapterListSection.style.display = 'block';
   chapterContentSection.style.display = 'none';
+  document.title = "Book - Chapters"; // Reset title to default when showing the list
   window.scrollTo(0, 0);
 }
 

@@ -4,6 +4,7 @@ const chapterNum = urlParams.get('ch');
 
 // If no chapter number is found, show "Chapter not found" immediately
 if (!chapterNum) {
+  document.title = "Chapter not found";
   document.getElementById('chapter-title').textContent = "Chapter not found";
   document.getElementById('verse-list').innerHTML = '<p>Please select a chapter from <a href="/">index</a>.</p>';
 } else {
@@ -19,7 +20,8 @@ if (!chapterNum) {
       return response.json();
     })
     .then(data => {
-      // Successfully fetched data
+      // Successfully fetched data, update title and content
+      document.title = `Chapter ${chapterNum} - Chanakya Niti`; // Set the page title dynamically
       document.getElementById('chapter-title').textContent = data.title;
 
       const verseList = document.getElementById('verse-list');
@@ -33,6 +35,7 @@ if (!chapterNum) {
     })
     .catch(error => {
       // If chapter is not found or there's an error fetching data
+      document.title = "Chapter not found";
       document.getElementById('chapter-title').textContent = "Chapter not found";
       document.getElementById('verse-list').innerHTML = '<p>The requested chapter does not exist. Please select a chapter from <a href="/">index</a>.</p>';
     })

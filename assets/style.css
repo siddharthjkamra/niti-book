@@ -14,8 +14,8 @@ body {
     /* font-family: 'Noto Serif Devanagari', serif; */
     font-family: 'HubotSans', sans-serif;
     padding: 8px;
-    font-weight: 400;
     font-stretch: 100%;
+    color: #1c1c1e;
 }
 
 a {
@@ -25,6 +25,7 @@ a {
 
 h1, h2 {
     text-align: center;
+    font-weight: bold;
 }
 
 .mt-5 {

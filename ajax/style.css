@@ -7,7 +7,6 @@
 
 body {
     font-family: 'HubotSans', sans-serif;
-    font-weight: 400;
     padding: 8px;
 }
 
@@ -18,6 +17,7 @@ a {
 
 h1, h2 {
     text-align: center;
+    font-weight: bold;
 }
 
 .mt-5 {

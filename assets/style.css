@@ -1,18 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/*
 @font-face {
   font-family: 'Noto Serif Devanagari';
   src: url('NotoSerifDevanagari-VariableFont_wdth,wght.ttf') format('truetype');
   font-weight: 100 900;
   font-stretch: 75% 100%;
 }
-@font-face {
-  font-family: 'HubotSans';
-  src: url('HubotSans-VariableFont_wdth,wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-stretch: 50% 200%;
-}
+*/
 body {
     /* font-family: 'Noto Serif Devanagari', serif; */
-    font-family: 'HubotSans', sans-serif;
+    font-family: "Ubuntu Mono", monospace;
     padding: 8px;
     font-stretch: 100%;
     color: #1c1c1e;

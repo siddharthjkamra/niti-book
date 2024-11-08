@@ -11,49 +11,39 @@ body {
     /* font-family: 'Noto Serif Devanagari', serif; */
     font-family: "Ubuntu Mono", monospace;
     padding: 8px;
-    font-stretch: 100%;
     color: #1c1c1e;
 }
-
 a {
   text-decoration: none;
   color: #007aff;
 }
-
 h1, h2 {
     text-align: center;
     font-weight: bold;
 }
-
 .mt-5 {
   margin-top: 5px;
 }
-
 .center {
   text-align: center;
 }
-
 .right {
   text-align: right;
 }
-
 #chapter-list, #verse-list {
     max-width: 600px;
     margin: 0 auto;
     list-style-type: none;
     padding: 0;
 }
-
 .chapter-item, .verse-item {
     cursor: pointer;
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
-
 .chapter-item:hover, .verse-item:hover {
     background-color: #f0f0f0;
 }
-
 #toast {
     visibility: hidden;
     position: fixed;
@@ -67,7 +57,6 @@ h1, h2 {
     opacity: 0;
     transition: visibility 0s, opacity 0.5s;
 }
-
 #toast.show {
     visibility: visible;
     opacity: 1;

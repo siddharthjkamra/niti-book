@@ -98,7 +98,7 @@ function goBack() {
 function showChapterList() {
   chapterListSection.style.display = 'block';
   chapterContentSection.style.display = 'none';
-  document.title = "Book - Chapters"; // Reset title to default when showing the list
+  document.title = "Chanakya Niti"; // Reset title to default when showing the list
   window.scrollTo(0, 0);
 }
 

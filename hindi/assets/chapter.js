@@ -47,9 +47,9 @@ if (!chapterNum) {
 
 // Copy verse text with prefix and show custom toast
 function copyVerse(verse, chapterNum, verseIndex) {
-  const formattedVerse = `~ Chanakya Niti ${chapterNum}:${verseIndex}\n${verse}`;
+  const formattedVerse = `~ चाणक्य नीति ${chapterNum}:${verseIndex}\n${verse}`;
   navigator.clipboard.writeText(formattedVerse).then(() => {
-    showToast("Verse copied!");
+    showToast("श्लोक कॉपी किया गया!");
   });
 }
 

@@ -1,18 +1,41 @@
-<html lang="en">
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chanakya Niti</title>
-    <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chanakya Niti</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/ionic.js"></script>
 </head>
-<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-    <div class="mt-5 right"><img src="/assets/change.png" style="vertical-align:middle;width:20px;"><a href="/ajax">Ajax</a></div>
-    <h1>Chanakya Niti</h1>
-    <h2>Chapters</h2>
-    <div id="chapter-list"></div>
-    <noscript>
-      <div style="font-weight: bold; text-align: center; padding: 20px;color:#ff3b30;">JavaScript is disabled in your browser. Please enable JavaScript for the best experience on this site.</div>
-    </noscript>
-    <script src="assets/index.js"></script>
+<body>
+  <ion-app>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Chanakya Niti</ion-title>
+        <ion-buttons slot="end">
+          <ion-button><img src="/assets/change.png"><a href="/ajax">AJAX</a></ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <!-- Ion Content (scrollable) -->
+    <ion-content>
+        <div id="chapter-list">
+    <!-- Content goes here -->
+  </div>
+    </ion-content>
+<!--
+    <ion-footer>
+      <ion-toolbar>
+        <ion-title>Made by Siddharth Kumar</ion-title>
+      </ion-toolbar>
+    </ion-footer>
+-->
+  </ion-app>
+  <script src="/assets/index.js"></script>
+  <script>
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js-enabled');
+</script>
 </body>
 </html>

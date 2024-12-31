@@ -6,7 +6,7 @@ const chapterNum = urlParams.get('ch');
 if (!chapterNum) {
   document.title = "Chapter not found";
   document.getElementById('chapter-title').textContent = "Chapter not found";
-  document.getElementById('verse-list').innerHTML = '<p>Please select a chapter from <a href="/">index</a>.</p>';
+  document.getElementById('verse-list').innerHTML = '<p style="text-align:center;">Please select a chapter from <a href="/">index</a>.</p>';
 } else {
   // Show the loading indicator when fetching data
   document.getElementById('loading-indicator').classList.add('show');

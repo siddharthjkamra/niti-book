@@ -7,6 +7,9 @@
   font-stretch: 75% 100%;
 }
 */
+* {
+  font-family: "Ubuntu Mono", monospace!important;
+}
 body {
     /* font-family: 'Noto Serif Devanagari', serif; */
     font-family: "Ubuntu Mono", monospace;
@@ -31,15 +34,19 @@ h1, h2 {
   text-align: right;
 }
 #chapter-list, #verse-list {
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
     list-style-type: none;
     padding: 0;
 }
 .chapter-item, .verse-item {
     cursor: pointer;
-    padding: 10px;
+    padding: 12px;
     border-bottom: 1px solid #ddd;
+    margin: 4px;
+}
+.chapter-item:last-child, .verse-item:last-child {
+  border-bottom: 0px;
 }
 .chapter-item:hover, .verse-item:hover {
     background-color: #f0f0f0;
@@ -67,5 +74,20 @@ h1, h2 {
   display: none; /* Hidden initially */
 }
 #loading-indicator.show {
+  display: block;
+}
+
+/* NOJS */
+.no-js body {
+  display: none;
+  
+}
+.no-js::after {
+  content: "JavaScript is not enabled!";
+  display: block;
+  color: navy;
+  padding: 8px;
+}
+.js-enabled body {
   display: block;
 }

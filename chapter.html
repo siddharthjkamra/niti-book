@@ -1,19 +1,32 @@
-<html lang="en">
+<html class="no-js" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chapter</title>
     <link rel="stylesheet" href="/assets/style.css">
+    <script src="/ionic.js"></script>
 </head>
-<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
-    <h1>Chanakya Niti</h1>
+<body>
+  <ion-app>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Chanakya Niti</span></ion-title>
+        <ion-buttons slot="end">
+          <ion-button><img src="/assets/change.png"><a href="/ajax">AJAX</a></ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
     <h2 id="chapter-title">Chapter</h2>
-    <!-- Loading Indicator -->
-    <div id="loading-indicator">Loading...</div>
-    <!-- List of verses -->
+    <ion-content>
+        <div id="loading-indicator">Loading...</div>
     <div id="verse-list"></div>
-    <!-- Custom Toast -->
     <div id="toast">Verse copied!</div>
+    </ion-content>
+    </ion-app>
     <script src="/assets/chapter.js"></script>
+    <script>
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js-enabled');
+</script>
 </body>
 </html>

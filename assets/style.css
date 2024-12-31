@@ -9,6 +9,7 @@
 */
 * {
   font-family: "Ubuntu Mono", monospace!important;
+  scroll-behavior: smooth;
 }
 body {
     /* font-family: 'Noto Serif Devanagari', serif; */
@@ -37,20 +38,20 @@ h1, h2 {
     max-width: 900px;
     margin: 0 auto;
     list-style-type: none;
-    padding: 5px;
 }
 .chapter-item, .verse-item {
     cursor: pointer;
     padding: 12px;
     border-bottom: 1px solid #ddd;
-    margin: 2px 0px 2px 0px;
     font-size: 16px;
 }
+/*
 .chapter-item:last-child, .verse-item:last-child {
   border-bottom: 0px;
 }
+*/
 .chapter-item:hover, .verse-item:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 #toast {
     visibility: hidden;
